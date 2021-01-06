@@ -39,6 +39,9 @@ namespace labEnviroController
             this.bwSystemTime = new System.ComponentModel.BackgroundWorker();
             this.lblSystemTime = new System.Windows.Forms.Label();
             this.bwGetClimate = new System.ComponentModel.BackgroundWorker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblSystemStatus = new System.Windows.Forms.Label();
+            this.bwPublish2Adafruit = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +55,7 @@ namespace labEnviroController
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(25, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(176, 129);
+            this.groupBox1.Size = new System.Drawing.Size(158, 129);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Atmospheric conditions";
@@ -123,11 +126,39 @@ namespace labEnviroController
             this.lblSystemTime.Text = "lblSystemTime";
             this.lblSystemTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // bwGetClimate
+            // 
+            this.bwGetClimate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwGetClimate_DoWork);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 161);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "System status : ";
+            // 
+            // lblSystemStatus
+            // 
+            this.lblSystemStatus.AutoSize = true;
+            this.lblSystemStatus.Location = new System.Drawing.Point(113, 160);
+            this.lblSystemStatus.Name = "lblSystemStatus";
+            this.lblSystemStatus.Size = new System.Drawing.Size(81, 13);
+            this.lblSystemStatus.TabIndex = 3;
+            this.lblSystemStatus.Text = "lblSystemStatus";
+            // 
+            // bwPublish2Adafruit
+            // 
+            this.bwPublish2Adafruit.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwPublish2Adafruit_DoWork);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(377, 212);
+            this.Controls.Add(this.lblSystemStatus);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblSystemTime);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -152,6 +183,9 @@ namespace labEnviroController
         private System.ComponentModel.BackgroundWorker bwSystemTime;
         private System.Windows.Forms.Label lblSystemTime;
         private System.ComponentModel.BackgroundWorker bwGetClimate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSystemStatus;
+        private System.ComponentModel.BackgroundWorker bwPublish2Adafruit;
     }
 }
 
