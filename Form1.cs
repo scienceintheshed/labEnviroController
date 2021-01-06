@@ -20,8 +20,9 @@ namespace labEnviroController
         {
             InitializeComponent();
             bwSystemTime.RunWorkerAsync();
-            bwGetClimate.RunWorkerAsync();
-            bwPublish2Adafruit.RunWorkerAsync();
+            //bwGetClimate.RunWorkerAsync();
+            //bwPublish2Adafruit.RunWorkerAsync();
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -49,8 +50,8 @@ namespace labEnviroController
                 }
                 else
                 {
-                    lblSystemTime.Text = DateTime.Now.ToString();
-                    Thread.Sleep(100);
+                    //lblSystemTime.Text = DateTime.Now.ToString();
+                    //Thread.Sleep(100);
                 }
             }
         }
@@ -62,15 +63,6 @@ namespace labEnviroController
             //  from a thread that didn't create that control.
 
             //  This thread is started at form_load and doesn't have a stop function.
-
-            if (lblSystemStatus.InvokeRequired)
-            {
-                lblSystemStatus.Invoke(new MethodInvoker(delegate { lblSystemStatus.Text = "Starting climate measurements."; }));
-            }
-            else
-            {
-                lblSystemStatus.Text = "Starting climate measurements.";
-            }
             
             while (true)
                 getClimate();
@@ -82,16 +74,6 @@ namespace labEnviroController
             //  This getClimate() method calls a python script that reads temperature and humidity 
             //  information from a SHT21 sensor.  
 
-            //int delayTime = Convert.ToInt32(txtClimateUpdatedInterval.Text) * 1000;
-
-            if (lblSystemStatus.InvokeRequired)
-            {
-                lblSystemStatus.Invoke(new MethodInvoker(delegate { lblSystemStatus.Text = "Measuring Laboratory environmental conditions."; }));
-            }
-            else
-            {
-                lblSystemStatus.Text = "Measuring Laboratory environmental conditions.";
-            }
             DateTime finishTime = (DateTime.Now).AddMilliseconds(15000);
 
             string python = @"/usr/bin/python3";
@@ -182,11 +164,14 @@ namespace labEnviroController
             }
 
         }
+
+
     }
 
     /*
      * Program - labEnviroController
      * 
-     * 06/01/2021 1117 - Original version.
+     * 06/01/2021 - 1400 - Add toggle buttons to show status of humidifier and heater.
+     * 06/01/2021 - 1117 - Original version.
      */
 }
