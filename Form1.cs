@@ -97,18 +97,9 @@ namespace labEnviroController
                 //  We use the InvokeRequired method to prevent a  "Cross thread operation not valid".This error occurs when we try to
                 //  call a Windows Forms control from a thread that didn't create that control.  We can pass a text value from the calling 
                 //  function.
-                if (txtTemperature.InvokeRequired)
-                {
-                    txtTemperature.Invoke(new MethodInvoker(delegate { txtTemperature.Text = _temp; }));
-                    txtHumidity.Invoke(new MethodInvoker(delegate { txtHumidity.Text = _humid; }));
-                    txtDewpoint.Invoke(new MethodInvoker(delegate { txtDewpoint.Text = _dewpoint; }));
-                }
-                else
-                {
-                    txtTemperature.Text = _temp;
-                    txtHumidity.Text = _humid;
-                    txtDewpoint.Text = _dewpoint;
-                }
+                txtTemperature.Invoke(new MethodInvoker(delegate { txtTemperature.Text = _temp; }));
+                txtHumidity.Invoke(new MethodInvoker(delegate { txtHumidity.Text = _humid; }));
+                txtDewpoint.Invoke(new MethodInvoker(delegate { txtDewpoint.Text = _dewpoint; }));
 
             }
             catch
@@ -173,8 +164,9 @@ namespace labEnviroController
     /*
      * Program - labEnviroController
      * 
-     * 06/01/2021 - 1647 - Include try/catch in getClimate.
-     * 06/01/2021 - 1400 - Add toggle buttons to show status of humidifier and heater.
-     * 06/01/2021 - 1117 - Original version.
+     * 06/01/2021 1834 - Eliminate if loops in getClimate.
+     * 06/01/2021 1647 - Include try/catch in getClimate.
+     * 06/01/2021 1400 - Add toggle buttons to show status of humidifier and heater.
+     * 06/01/2021 1117 - Original version.
      */
 }
