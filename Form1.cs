@@ -20,8 +20,8 @@ namespace labEnviroController
         {
             InitializeComponent();
             bwSystemTime.RunWorkerAsync();
-            //bwGetClimate.RunWorkerAsync();
-            //bwPublish2Adafruit.RunWorkerAsync();
+            bwGetClimate.RunWorkerAsync();
+            bwPublish2Adafruit.RunWorkerAsync();
             
         }
 
