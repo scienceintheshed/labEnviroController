@@ -32,28 +32,19 @@ namespace labEnviroController
             //  writing to the datafile.  The timestamp for publishing to the cloud is derived from the called python script
             //
             //  We use the InvokeRequired method to prevent a  "Cross thread operation not valid".This error occurs when we try to
-            //  call a Windows Forms control from a thread that didn't create that control.  We can pass a text value from the calling 
-            //  function.
+            //  call a Windows Forms control from a thread that didn't create that control.  
 
             //  This thread is started at form_load and doesn't have a stop function.
             while (true)
             {
-                if (lblSystemTime.InvokeRequired)
-                {
-                    lblSystemTime.Invoke(new MethodInvoker(delegate { lblSystemTime.Text = DateTime.Now.ToString(); }));
-                    Thread.Sleep(100);
-                }
-                else
-                {
-                    //lblSystemTime.Text = DateTime.Now.ToString();
-                    //Thread.Sleep(100);
-                }
+                lblSystemTime.Invoke(new MethodInvoker(delegate { lblSystemTime.Text = DateTime.Now.ToString(); }));
+                Thread.Sleep(100);                
             }
         }
 
         private void bwGetClimate_DoWork(object sender, DoWorkEventArgs e)
         {
-            //  Backgroundworker 1 is used to update the climate information on the form.  The getClimate() method handles
+            //  Background worker bwGetClimate is used to update the climate information on the form.  The getClimate() method handles
             //  possible "Cross thread operation not valid" errors that may occur when we try to call a Windows form control
             //  from a thread that didn't create that control.
 
@@ -115,6 +106,7 @@ namespace labEnviroController
 
         private void bwPublish2Adafruit_DoWork(object sender, DoWorkEventArgs e)
         {
+            //  Background worker bwPublish2Adafruit is used to publish laboratory environment data to io.adafruit.com.
 
             while (true)
                 publish2Cloud();
@@ -157,13 +149,18 @@ namespace labEnviroController
             }
 
         }
-
-
     }
 
     /*
+     *  THINGS TO DO.
+     *  1. Change getClimate aquisition interval to 60 seconds.
+     *  2. Change publish2Adafruit update interval to 60 seconds.
+     */
+
+
+    /*
      * Program - labEnviroController
-     * 
+     * 06/01/2021 1846 - Remove if loops in bwSystemTime and use Invoke directly.
      * 06/01/2021 1834 - Eliminate if loops in getClimate.
      * 06/01/2021 1647 - Include try/catch in getClimate.
      * 06/01/2021 1400 - Add toggle buttons to show status of humidifier and heater.
