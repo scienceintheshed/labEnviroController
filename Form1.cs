@@ -16,7 +16,7 @@ namespace labEnviroController
 {
     public partial class Form1 : Form
     {
-        private Settings frmSettings;
+        
 
         public Form1()
         {
@@ -173,8 +173,15 @@ namespace labEnviroController
 
         private void bwCheckClimate_DoWork(object sender, DoWorkEventArgs e)
         {
+            /*  In this function, we compare the actual temperature and humidity readings from the SHT21
+             *  sensor to the preset maximum and minimum set values.  If the values are out of set range,
+             *  the function runPythonScript() is called and parameters to identify the approprite relay and 
+             *  gpio state are passed.
+             */
 
             Thread.Sleep(5000);
+            string relayAction = "Programs/pythonScripts/relayState";
+
             while (true)
             {
 
@@ -186,7 +193,7 @@ namespace labEnviroController
                     if (labTemperature < Convert.ToDouble(Properties.Settings.Default.minTemp))
                     {
                         //  Switch on the heater
-
+                        runPythonScript(relayAction, 20, 0);
                         lblHeaterOff.Visible = false;
                         lblHeaterOn.Visible = true;
 
@@ -194,13 +201,14 @@ namespace labEnviroController
                     if (labTemperature > Convert.ToDouble(Properties.Settings.Default.maxTemp))
                     {
                         //  Switch off the heater.
+                        runPythonScript(relayAction, 20, 1);
                         lblHeaterOff.Visible = true;
                         lblHeaterOn.Visible = false;
                     }
                     if (labHumidity < Convert.ToDouble(Properties.Settings.Default.minHumidity))
                     {
                         //  Switch on the humidifier.
-
+                        runPythonScript(relayAction, 21, 0);
                         lblHumidifierOff.Visible = false;
                         lblHumidifierOn.Visible = true;
 
@@ -208,6 +216,7 @@ namespace labEnviroController
                     if (labHumidity > Convert.ToDouble(Properties.Settings.Default.maxHumidity))
                     {
                         //  Switch off the humidifier.
+                        runPythonScript(relayAction, 21, 1);
                         lblHumidifierOff.Visible = true;
                         lblHumidifierOn.Visible = false;
                     }
@@ -218,10 +227,41 @@ namespace labEnviroController
                 }
                 Thread.Sleep(5000);
             }
+                
+        }
 
-            
-  
-            
+        private void runPythonScript(string fileName, int myPin, int gpioState)
+        {
+            /*  This function is based on the one used in the Atmos series of programs.  It's purpose is to combine all the other 
+             *  functions that call python scripts into one main piece of code.  Variables need to be defined for each application.
+            */
+
+            /*  Define where the python complier is located and which script we are going to run.  All the scripts needed for the 
+             *  operation of the program should be stored the /home/pi/Programs/pythonScripts/ folder and identified by the 
+             *  fileName variable, without the .py extension.
+            */
+            string python = @"/usr/bin/python3";
+            string runPythonScript = string.Format(@"/home/pi/" + fileName + ".py {0} {1} {2} {3} {4}", fileName, myPin, gpioState);
+
+            try
+            {
+                Process pythonScript = new Process();
+                ProcessStartInfo pythonScriptStartInfo = new ProcessStartInfo
+                {
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    FileName = python,
+                    Arguments = runPythonScript
+                };
+
+                pythonScript.StartInfo = pythonScriptStartInfo;
+                pythonScript.Start();
+
+            }
+            catch
+            {
+            }
         }
     }
 
