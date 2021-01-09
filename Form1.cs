@@ -181,6 +181,7 @@ namespace labEnviroController
                 try
                 {
                     double labTemperature = Convert.ToDouble(lblTemperature.Text);
+                    double labHumidity = Convert.ToDouble(lblHumidity.Text);
 
                     if (labTemperature < Convert.ToDouble(Properties.Settings.Default.minTemp))
                     {
@@ -195,6 +196,20 @@ namespace labEnviroController
                         //  Switch off the heater.
                         lblHeaterOff.Visible = true;
                         lblHeaterOn.Visible = false;
+                    }
+                    if (labHumidity < Convert.ToDouble(Properties.Settings.Default.minHumidity))
+                    {
+                        //  Switch on the humidifier.
+
+                        lblHumidifierOff.Visible = false;
+                        lblHumidifierOn.Visible = true;
+
+                    }
+                    if (labHumidity > Convert.ToDouble(Properties.Settings.Default.maxHumidity))
+                    {
+                        //  Switch off the humidifier.
+                        lblHumidifierOff.Visible = true;
+                        lblHumidifierOn.Visible = false;
                     }
                 }
                 catch

@@ -232,6 +232,7 @@ namespace labEnviroController
             this.lblTemperature.Size = new System.Drawing.Size(35, 13);
             this.lblTemperature.TabIndex = 12;
             this.lblTemperature.Text = "label5";
+            this.lblTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHumidity
             // 
@@ -241,6 +242,7 @@ namespace labEnviroController
             this.lblHumidity.Size = new System.Drawing.Size(35, 13);
             this.lblHumidity.TabIndex = 13;
             this.lblHumidity.Text = "label5";
+            this.lblHumidity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDewPoint
             // 
@@ -250,6 +252,7 @@ namespace labEnviroController
             this.lblDewPoint.Size = new System.Drawing.Size(35, 13);
             this.lblDewPoint.TabIndex = 14;
             this.lblDewPoint.Text = "label5";
+            this.lblDewPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
