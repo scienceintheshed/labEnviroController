@@ -32,9 +32,6 @@ namespace labEnviroController
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtDewpoint = new System.Windows.Forms.TextBox();
-            this.txtHumidity = new System.Windows.Forms.TextBox();
-            this.txtTemperature = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.bwSystemTime = new System.ComponentModel.BackgroundWorker();
@@ -45,14 +42,16 @@ namespace labEnviroController
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblHumidifierOn = new System.Windows.Forms.Label();
-            this.lblHeaterOn = new System.Windows.Forms.Label();
-            this.lblHumidifierOff = new System.Windows.Forms.Label();
             this.lblHeaterOff = new System.Windows.Forms.Label();
+            this.lblHumidifierOff = new System.Windows.Forms.Label();
+            this.lblHeaterOn = new System.Windows.Forms.Label();
+            this.lblHumidifierOn = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label4 = new System.Windows.Forms.Label();
             this.bwCheckClimate = new System.ComponentModel.BackgroundWorker();
+            this.lblTemperature = new System.Windows.Forms.Label();
+            this.lblHumidity = new System.Windows.Forms.Label();
+            this.lblDewPoint = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -60,12 +59,12 @@ namespace labEnviroController
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblDewPoint);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtDewpoint);
-            this.groupBox1.Controls.Add(this.txtHumidity);
-            this.groupBox1.Controls.Add(this.txtTemperature);
             this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblHumidity);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblTemperature);
             this.groupBox1.Location = new System.Drawing.Point(25, 51);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(158, 129);
@@ -81,32 +80,6 @@ namespace labEnviroController
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Dewpoint";
-            // 
-            // txtDewpoint
-            // 
-            this.txtDewpoint.Location = new System.Drawing.Point(80, 87);
-            this.txtDewpoint.Name = "txtDewpoint";
-            this.txtDewpoint.Size = new System.Drawing.Size(57, 20);
-            this.txtDewpoint.TabIndex = 4;
-            this.txtDewpoint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtHumidity
-            // 
-            this.txtHumidity.Location = new System.Drawing.Point(80, 57);
-            this.txtHumidity.Name = "txtHumidity";
-            this.txtHumidity.Size = new System.Drawing.Size(57, 20);
-            this.txtHumidity.TabIndex = 3;
-            this.txtHumidity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-
-            // 
-            // txtTemperature
-            // 
-            this.txtTemperature.Location = new System.Drawing.Point(80, 27);
-            this.txtTemperature.Name = "txtTemperature";
-            this.txtTemperature.Size = new System.Drawing.Size(57, 20);
-            this.txtTemperature.TabIndex = 2;
-            this.txtTemperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-
             // 
             // label2
             // 
@@ -179,45 +152,12 @@ namespace labEnviroController
             this.groupBox2.Controls.Add(this.lblHumidifierOn);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(305, 51);
+            this.groupBox2.Location = new System.Drawing.Point(227, 51);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(180, 129);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Equipment status";
-            // 
-            // lblHumidifierOn
-            // 
-            this.lblHumidifierOn.AutoSize = true;
-            this.lblHumidifierOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHumidifierOn.ForeColor = System.Drawing.Color.Green;
-            this.lblHumidifierOn.Location = new System.Drawing.Point(100, 27);
-            this.lblHumidifierOn.Name = "lblHumidifierOn";
-            this.lblHumidifierOn.Size = new System.Drawing.Size(52, 29);
-            this.lblHumidifierOn.TabIndex = 8;
-            this.lblHumidifierOn.Text = "ON";
-            // 
-            // lblHeaterOn
-            // 
-            this.lblHeaterOn.AutoSize = true;
-            this.lblHeaterOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeaterOn.ForeColor = System.Drawing.Color.Green;
-            this.lblHeaterOn.Location = new System.Drawing.Point(100, 78);
-            this.lblHeaterOn.Name = "lblHeaterOn";
-            this.lblHeaterOn.Size = new System.Drawing.Size(52, 29);
-            this.lblHeaterOn.TabIndex = 9;
-            this.lblHeaterOn.Text = "ON";
-            // 
-            // lblHumidifierOff
-            // 
-            this.lblHumidifierOff.AutoSize = true;
-            this.lblHumidifierOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHumidifierOff.ForeColor = System.Drawing.Color.Red;
-            this.lblHumidifierOff.Location = new System.Drawing.Point(94, 27);
-            this.lblHumidifierOff.Name = "lblHumidifierOff";
-            this.lblHumidifierOff.Size = new System.Drawing.Size(65, 29);
-            this.lblHumidifierOff.TabIndex = 10;
-            this.lblHumidifierOff.Text = "OFF";
             // 
             // lblHeaterOff
             // 
@@ -230,13 +170,46 @@ namespace labEnviroController
             this.lblHeaterOff.TabIndex = 11;
             this.lblHeaterOff.Text = "OFF";
             // 
+            // lblHumidifierOff
+            // 
+            this.lblHumidifierOff.AutoSize = true;
+            this.lblHumidifierOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHumidifierOff.ForeColor = System.Drawing.Color.Red;
+            this.lblHumidifierOff.Location = new System.Drawing.Point(94, 27);
+            this.lblHumidifierOff.Name = "lblHumidifierOff";
+            this.lblHumidifierOff.Size = new System.Drawing.Size(65, 29);
+            this.lblHumidifierOff.TabIndex = 10;
+            this.lblHumidifierOff.Text = "OFF";
+            // 
+            // lblHeaterOn
+            // 
+            this.lblHeaterOn.AutoSize = true;
+            this.lblHeaterOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeaterOn.ForeColor = System.Drawing.Color.Green;
+            this.lblHeaterOn.Location = new System.Drawing.Point(100, 78);
+            this.lblHeaterOn.Name = "lblHeaterOn";
+            this.lblHeaterOn.Size = new System.Drawing.Size(52, 29);
+            this.lblHeaterOn.TabIndex = 9;
+            this.lblHeaterOn.Text = "ON";
+            // 
+            // lblHumidifierOn
+            // 
+            this.lblHumidifierOn.AutoSize = true;
+            this.lblHumidifierOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHumidifierOn.ForeColor = System.Drawing.Color.Green;
+            this.lblHumidifierOn.Location = new System.Drawing.Point(100, 27);
+            this.lblHumidifierOn.Name = "lblHumidifierOn";
+            this.lblHumidifierOn.Size = new System.Drawing.Size(52, 29);
+            this.lblHumidifierOn.TabIndex = 8;
+            this.lblHumidifierOn.Text = "ON";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(510, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(438, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -247,26 +220,43 @@ namespace labEnviroController
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(204, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "label4";
-            // 
             // bwCheckClimate
             // 
             this.bwCheckClimate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwCheckClimate_DoWork);
+            // 
+            // lblTemperature
+            // 
+            this.lblTemperature.AutoSize = true;
+            this.lblTemperature.Location = new System.Drawing.Point(80, 30);
+            this.lblTemperature.Name = "lblTemperature";
+            this.lblTemperature.Size = new System.Drawing.Size(35, 13);
+            this.lblTemperature.TabIndex = 12;
+            this.lblTemperature.Text = "label5";
+            // 
+            // lblHumidity
+            // 
+            this.lblHumidity.AutoSize = true;
+            this.lblHumidity.Location = new System.Drawing.Point(80, 60);
+            this.lblHumidity.Name = "lblHumidity";
+            this.lblHumidity.Size = new System.Drawing.Size(35, 13);
+            this.lblHumidity.TabIndex = 13;
+            this.lblHumidity.Text = "label5";
+            // 
+            // lblDewPoint
+            // 
+            this.lblDewPoint.AutoSize = true;
+            this.lblDewPoint.Location = new System.Drawing.Point(80, 90);
+            this.lblDewPoint.Name = "lblDewPoint";
+            this.lblDewPoint.Size = new System.Drawing.Size(35, 13);
+            this.lblDewPoint.TabIndex = 14;
+            this.lblDewPoint.Text = "label5";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(510, 214);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(438, 220);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblSystemTime);
             this.Controls.Add(this.groupBox1);
@@ -291,9 +281,6 @@ namespace labEnviroController
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtDewpoint;
-        private System.Windows.Forms.TextBox txtHumidity;
-        private System.Windows.Forms.TextBox txtTemperature;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker bwSystemTime;
@@ -310,8 +297,10 @@ namespace labEnviroController
         private System.Windows.Forms.Label lblHumidifierOn;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.Label label4;
         private System.ComponentModel.BackgroundWorker bwCheckClimate;
+        private System.Windows.Forms.Label lblTemperature;
+        private System.Windows.Forms.Label lblDewPoint;
+        private System.Windows.Forms.Label lblHumidity;
     }
 }
 

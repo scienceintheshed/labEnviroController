@@ -90,9 +90,9 @@ namespace labEnviroController
                 //  We use the InvokeRequired method to prevent a  "Cross thread operation not valid".This error occurs when we try to
                 //  call a Windows Forms control from a thread that didn't create that control.  We can pass a text value from the calling 
                 //  function.
-                txtTemperature.Invoke(new MethodInvoker(delegate { txtTemperature.Text = _temp; }));
-                txtHumidity.Invoke(new MethodInvoker(delegate { txtHumidity.Text = _humid; }));
-                txtDewpoint.Invoke(new MethodInvoker(delegate { txtDewpoint.Text = _dewpoint; }));
+                lblTemperature.Invoke(new MethodInvoker(delegate { lblTemperature.Text = _temp; }));
+                lblHumidity.Invoke(new MethodInvoker(delegate { lblHumidity.Text = _humid; }));
+                lblDewPoint.Invoke(new MethodInvoker(delegate { lblDewPoint.Text = _dewpoint; }));
 
             }
             catch
@@ -122,7 +122,7 @@ namespace labEnviroController
             //  such as electrode outputs etc. and move the code to the backgroundworker3() method, after the getGas() method.
             DateTime nextPublish = (DateTime.Now).AddMilliseconds(15000);
             string python = @"/usr/bin/python3";
-            string args3 = string.Format(@"/home/pi/Programs/pythonScripts/publish2Cloud/publish2Cloud.py {0} {1} {2}", txtTemperature.Text, txtHumidity.Text, txtDewpoint.Text);
+            string args3 = string.Format(@"/home/pi/Programs/pythonScripts/publish2Cloud/publish2Cloud.py {0} {1} {2}", lblTemperature.Text, lblHumidity.Text, lblDewPoint.Text);
 
             try
             {
@@ -168,7 +168,7 @@ namespace labEnviroController
             bwPublish2Adafruit.RunWorkerAsync();
             bwCheckClimate.RunWorkerAsync();
             
-            label4.Text = Properties.Settings.Default.maxTemp;
+
         }
 
         private void bwCheckClimate_DoWork(object sender, DoWorkEventArgs e)
@@ -177,10 +177,10 @@ namespace labEnviroController
             Thread.Sleep(5000);
             while (true)
             {
-                label4.Text = Properties.Settings.Default.minTemp;
+
                 try
                 {
-                    double labTemperature = Convert.ToDouble(txtTemperature.Text);
+                    double labTemperature = Convert.ToDouble(lblTemperature.Text);
 
                     if (labTemperature < Convert.ToDouble(Properties.Settings.Default.minTemp))
                     {
