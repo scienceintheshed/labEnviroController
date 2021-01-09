@@ -30,7 +30,6 @@ namespace labEnviroController
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDewpoint = new System.Windows.Forms.TextBox();
@@ -46,16 +45,17 @@ namespace labEnviroController
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.picHumidifierOff = new System.Windows.Forms.PictureBox();
-            this.picHeaterOff = new System.Windows.Forms.PictureBox();
-            this.picHumidifierOn = new System.Windows.Forms.PictureBox();
-            this.picHeaterOn = new System.Windows.Forms.PictureBox();
+            this.lblHumidifierOn = new System.Windows.Forms.Label();
+            this.lblHeaterOn = new System.Windows.Forms.Label();
+            this.lblHumidifierOff = new System.Windows.Forms.Label();
+            this.lblHeaterOff = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
+            this.bwCheckClimate = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picHumidifierOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picHeaterOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picHumidifierOn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picHeaterOn)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -66,13 +66,12 @@ namespace labEnviroController
             this.groupBox1.Controls.Add(this.txtTemperature);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(25, 25);
+            this.groupBox1.Location = new System.Drawing.Point(25, 51);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(158, 129);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Atmospheric conditions";
-
             // 
             // label3
             // 
@@ -98,6 +97,7 @@ namespace labEnviroController
             this.txtHumidity.Size = new System.Drawing.Size(57, 20);
             this.txtHumidity.TabIndex = 3;
             this.txtHumidity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+
             // 
             // txtTemperature
             // 
@@ -106,6 +106,7 @@ namespace labEnviroController
             this.txtTemperature.Size = new System.Drawing.Size(57, 20);
             this.txtTemperature.TabIndex = 2;
             this.txtTemperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+
             // 
             // label2
             // 
@@ -132,7 +133,7 @@ namespace labEnviroController
             // lblSystemTime
             // 
             this.lblSystemTime.AutoSize = true;
-            this.lblSystemTime.Location = new System.Drawing.Point(291, 192);
+            this.lblSystemTime.Location = new System.Drawing.Point(267, 192);
             this.lblSystemTime.Name = "lblSystemTime";
             this.lblSystemTime.Size = new System.Drawing.Size(74, 13);
             this.lblSystemTime.TabIndex = 1;
@@ -172,81 +173,115 @@ namespace labEnviroController
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.picHeaterOn);
-            this.groupBox2.Controls.Add(this.picHumidifierOn);
-            this.groupBox2.Controls.Add(this.picHeaterOff);
-            this.groupBox2.Controls.Add(this.picHumidifierOff);
+            this.groupBox2.Controls.Add(this.lblHeaterOff);
+            this.groupBox2.Controls.Add(this.lblHumidifierOff);
+            this.groupBox2.Controls.Add(this.lblHeaterOn);
+            this.groupBox2.Controls.Add(this.lblHumidifierOn);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(214, 25);
+            this.groupBox2.Location = new System.Drawing.Point(305, 51);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(180, 129);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Equipment status";
             // 
-            // picHumidifierOff
+            // lblHumidifierOn
             // 
-            this.picHumidifierOff.Image = ((System.Drawing.Image)(resources.GetObject("picHumidifierOff.Image")));
-            this.picHumidifierOff.Location = new System.Drawing.Point(80, 25);
-            this.picHumidifierOff.Name = "picHumidifierOff";
-            this.picHumidifierOff.Size = new System.Drawing.Size(70, 35);
-            this.picHumidifierOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picHumidifierOff.TabIndex = 8;
-            this.picHumidifierOff.TabStop = false;
+            this.lblHumidifierOn.AutoSize = true;
+            this.lblHumidifierOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHumidifierOn.ForeColor = System.Drawing.Color.Green;
+            this.lblHumidifierOn.Location = new System.Drawing.Point(100, 27);
+            this.lblHumidifierOn.Name = "lblHumidifierOn";
+            this.lblHumidifierOn.Size = new System.Drawing.Size(52, 29);
+            this.lblHumidifierOn.TabIndex = 8;
+            this.lblHumidifierOn.Text = "ON";
             // 
-            // picHeaterOff
+            // lblHeaterOn
             // 
-            this.picHeaterOff.Image = ((System.Drawing.Image)(resources.GetObject("picHeaterOff.Image")));
-            this.picHeaterOff.Location = new System.Drawing.Point(80, 75);
-            this.picHeaterOff.Name = "picHeaterOff";
-            this.picHeaterOff.Size = new System.Drawing.Size(70, 35);
-            this.picHeaterOff.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picHeaterOff.TabIndex = 9;
-            this.picHeaterOff.TabStop = false;
+            this.lblHeaterOn.AutoSize = true;
+            this.lblHeaterOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeaterOn.ForeColor = System.Drawing.Color.Green;
+            this.lblHeaterOn.Location = new System.Drawing.Point(100, 78);
+            this.lblHeaterOn.Name = "lblHeaterOn";
+            this.lblHeaterOn.Size = new System.Drawing.Size(52, 29);
+            this.lblHeaterOn.TabIndex = 9;
+            this.lblHeaterOn.Text = "ON";
             // 
-            // picHumidifierOn
+            // lblHumidifierOff
             // 
-            this.picHumidifierOn.Image = ((System.Drawing.Image)(resources.GetObject("picHumidifierOn.Image")));
-            this.picHumidifierOn.Location = new System.Drawing.Point(80, 25);
-            this.picHumidifierOn.Name = "picHumidifierOn";
-            this.picHumidifierOn.Size = new System.Drawing.Size(70, 35);
-            this.picHumidifierOn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picHumidifierOn.TabIndex = 11;
-            this.picHumidifierOn.TabStop = false;
-            this.picHumidifierOn.Visible = false;
+            this.lblHumidifierOff.AutoSize = true;
+            this.lblHumidifierOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHumidifierOff.ForeColor = System.Drawing.Color.Red;
+            this.lblHumidifierOff.Location = new System.Drawing.Point(94, 27);
+            this.lblHumidifierOff.Name = "lblHumidifierOff";
+            this.lblHumidifierOff.Size = new System.Drawing.Size(65, 29);
+            this.lblHumidifierOff.TabIndex = 10;
+            this.lblHumidifierOff.Text = "OFF";
             // 
-            // picHeaterOn
+            // lblHeaterOff
             // 
-            this.picHeaterOn.Image = ((System.Drawing.Image)(resources.GetObject("picHeaterOn.Image")));
-            this.picHeaterOn.Location = new System.Drawing.Point(80, 75);
-            this.picHeaterOn.Name = "picHeaterOn";
-            this.picHeaterOn.Size = new System.Drawing.Size(70, 35);
-            this.picHeaterOn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picHeaterOn.TabIndex = 12;
-            this.picHeaterOn.TabStop = false;
-            this.picHeaterOn.Visible = false;
+            this.lblHeaterOff.AutoSize = true;
+            this.lblHeaterOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeaterOff.ForeColor = System.Drawing.Color.Red;
+            this.lblHeaterOff.Location = new System.Drawing.Point(94, 78);
+            this.lblHeaterOff.Name = "lblHeaterOff";
+            this.lblHeaterOff.Size = new System.Drawing.Size(65, 29);
+            this.lblHeaterOff.TabIndex = 11;
+            this.lblHeaterOff.Text = "OFF";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(510, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(204, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "label4";
+            // 
+            // bwCheckClimate
+            // 
+            this.bwCheckClimate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwCheckClimate_DoWork);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(415, 214);
+            this.ClientSize = new System.Drawing.Size(510, 214);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblSystemTime);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Laboratory Environment Controller";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picHumidifierOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picHeaterOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picHumidifierOn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picHeaterOn)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,10 +304,14 @@ namespace labEnviroController
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.PictureBox picHeaterOn;
-        private System.Windows.Forms.PictureBox picHumidifierOn;
-        private System.Windows.Forms.PictureBox picHeaterOff;
-        private System.Windows.Forms.PictureBox picHumidifierOff;
+        private System.Windows.Forms.Label lblHeaterOff;
+        private System.Windows.Forms.Label lblHumidifierOff;
+        private System.Windows.Forms.Label lblHeaterOn;
+        private System.Windows.Forms.Label lblHumidifierOn;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
+        private System.ComponentModel.BackgroundWorker bwCheckClimate;
     }
 }
 

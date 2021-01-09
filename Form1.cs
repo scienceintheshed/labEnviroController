@@ -16,12 +16,13 @@ namespace labEnviroController
 {
     public partial class Form1 : Form
     {
+        private Settings frmSettings;
+
         public Form1()
         {
             InitializeComponent();
-            bwSystemTime.RunWorkerAsync();
-            bwGetClimate.RunWorkerAsync();
-            bwPublish2Adafruit.RunWorkerAsync();
+            
+
             
         }
 
@@ -35,6 +36,7 @@ namespace labEnviroController
             //  call a Windows Forms control from a thread that didn't create that control.  
 
             //  This thread is started at form_load and doesn't have a stop function.
+            Thread.Sleep(2000);
             while (true)
             {
                 lblSystemTime.Invoke(new MethodInvoker(delegate { lblSystemTime.Text = DateTime.Now.ToString(); }));
@@ -148,6 +150,63 @@ namespace labEnviroController
                 //  Create a loop
             }
 
+        }
+
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //  Displays the About form.
+            Settings settingsForm = new Settings();
+            settingsForm.Show();
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            bwSystemTime.RunWorkerAsync();
+            bwGetClimate.RunWorkerAsync();
+            bwPublish2Adafruit.RunWorkerAsync();
+            bwCheckClimate.RunWorkerAsync();
+            
+            label4.Text = Properties.Settings.Default.maxTemp;
+        }
+
+        private void bwCheckClimate_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            Thread.Sleep(5000);
+            while (true)
+            {
+                label4.Text = Properties.Settings.Default.minTemp;
+                try
+                {
+                    double labTemperature = Convert.ToDouble(txtTemperature.Text);
+
+                    if (labTemperature < Convert.ToDouble(Properties.Settings.Default.minTemp))
+                    {
+                        //  Switch on the heater
+
+                        lblHeaterOff.Visible = false;
+                        lblHeaterOn.Visible = true;
+
+                    }
+                    if (labTemperature > Convert.ToDouble(Properties.Settings.Default.maxTemp))
+                    {
+                        //  Switch off the heater.
+                        lblHeaterOff.Visible = true;
+                        lblHeaterOn.Visible = false;
+                    }
+                }
+                catch
+                {
+                    //
+                }
+                Thread.Sleep(5000);
+            }
+
+            
+  
+            
         }
     }
 

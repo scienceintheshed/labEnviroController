@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="labEnviroController.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="maxTemp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25.5</Value>
+    </Setting>
+    <Setting Name="minTemp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">24.5</Value>
+    </Setting>
+    <Setting Name="maxHumidity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">55</Value>
+    </Setting>
+    <Setting Name="minHumidity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
