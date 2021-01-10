@@ -31,9 +31,12 @@ namespace labEnviroController
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDewPoint = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblHumidity = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTemperature = new System.Windows.Forms.Label();
             this.bwSystemTime = new System.ComponentModel.BackgroundWorker();
             this.lblSystemTime = new System.Windows.Forms.Label();
             this.bwGetClimate = new System.ComponentModel.BackgroundWorker();
@@ -49,9 +52,6 @@ namespace labEnviroController
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bwCheckClimate = new System.ComponentModel.BackgroundWorker();
-            this.lblTemperature = new System.Windows.Forms.Label();
-            this.lblHumidity = new System.Windows.Forms.Label();
-            this.lblDewPoint = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -72,6 +72,16 @@ namespace labEnviroController
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Atmospheric conditions";
             // 
+            // lblDewPoint
+            // 
+            this.lblDewPoint.AutoSize = true;
+            this.lblDewPoint.Location = new System.Drawing.Point(80, 90);
+            this.lblDewPoint.Name = "lblDewPoint";
+            this.lblDewPoint.Size = new System.Drawing.Size(35, 13);
+            this.lblDewPoint.TabIndex = 14;
+            this.lblDewPoint.Text = "label5";
+            this.lblDewPoint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -90,6 +100,16 @@ namespace labEnviroController
             this.label2.TabIndex = 1;
             this.label2.Text = "Humidity";
             // 
+            // lblHumidity
+            // 
+            this.lblHumidity.AutoSize = true;
+            this.lblHumidity.Location = new System.Drawing.Point(80, 60);
+            this.lblHumidity.Name = "lblHumidity";
+            this.lblHumidity.Size = new System.Drawing.Size(35, 13);
+            this.lblHumidity.TabIndex = 13;
+            this.lblHumidity.Text = "label5";
+            this.lblHumidity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -98,6 +118,16 @@ namespace labEnviroController
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Temperature";
+            // 
+            // lblTemperature
+            // 
+            this.lblTemperature.AutoSize = true;
+            this.lblTemperature.Location = new System.Drawing.Point(80, 30);
+            this.lblTemperature.Name = "lblTemperature";
+            this.lblTemperature.Size = new System.Drawing.Size(35, 13);
+            this.lblTemperature.TabIndex = 12;
+            this.lblTemperature.Text = "label5";
+            this.lblTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // bwSystemTime
             // 
@@ -223,36 +253,6 @@ namespace labEnviroController
             // bwCheckClimate
             // 
             this.bwCheckClimate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwCheckClimate_DoWork);
-            // 
-            // lblTemperature
-            // 
-            this.lblTemperature.AutoSize = true;
-            this.lblTemperature.Location = new System.Drawing.Point(80, 30);
-            this.lblTemperature.Name = "lblTemperature";
-            this.lblTemperature.Size = new System.Drawing.Size(35, 13);
-            this.lblTemperature.TabIndex = 12;
-            this.lblTemperature.Text = "label5";
-            this.lblTemperature.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblHumidity
-            // 
-            this.lblHumidity.AutoSize = true;
-            this.lblHumidity.Location = new System.Drawing.Point(80, 60);
-            this.lblHumidity.Name = "lblHumidity";
-            this.lblHumidity.Size = new System.Drawing.Size(35, 13);
-            this.lblHumidity.TabIndex = 13;
-            this.lblHumidity.Text = "label5";
-            this.lblHumidity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblDewPoint
-            // 
-            this.lblDewPoint.AutoSize = true;
-            this.lblDewPoint.Location = new System.Drawing.Point(80, 90);
-            this.lblDewPoint.Name = "lblDewPoint";
-            this.lblDewPoint.Size = new System.Drawing.Size(35, 13);
-            this.lblDewPoint.TabIndex = 14;
-            this.lblDewPoint.Text = "label5";
-            this.lblDewPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
