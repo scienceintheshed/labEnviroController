@@ -269,11 +269,13 @@ namespace labEnviroController
      *  THINGS TO DO.
      *  1. Change getClimate aquisition interval to 60 seconds.
      *  2. Change publish2Adafruit update interval to 60 seconds.
+     *  3. Use Round function on SHT21 data to 1 decimal place.
      */
 
 
     /*
      * Program - labEnviroController
+     * 10/01/2021 1100 - Include bwCheckClimate() and runPythonScript().
      * 06/01/2021 1846 - Remove if loops in bwSystemTime and use Invoke directly.
      * 06/01/2021 1834 - Eliminate if loops in getClimate.
      * 06/01/2021 1647 - Include try/catch in getClimate.
